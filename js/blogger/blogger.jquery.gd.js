@@ -12,7 +12,7 @@
     },
     init: function()
     {
-      $('button').live('click', function(e) {
+      $('button').on('click', function(e){
         e.preventDefault();
         eval('JQFUNCTIONS.runFunc["'+$(this).attr("id")+'"]();');
       });
