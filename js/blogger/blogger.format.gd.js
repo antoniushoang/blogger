@@ -286,7 +286,7 @@ function convertCustomFontTags(text){
   text = updateCustomTag(text, /\[co=/i, 4, /\]/i, 1, /\[\/co\]/i, 5, '<font color="', '">', '</font>');
   text = updateCustomTag(text, /\[bg=/i, 4, /\]/i, 1, /\[\/bg\]/i, 5, '<span style="background-color:', '">', '</span>');
   text = updateCustomTag(text, /\[al=/i, 4, /\]/i, 1, /\[\/al\]/i, 5, '<div align="', '">', '</div>');
-  text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '<b class="xut-', '">', '</b>');
+  text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '<b class="xut-', '"></b>', '', false);
   ////
   //// Clean well-formed tag attributes
   text = text.tag2tag("img", "", "(src|width|height|border)");
