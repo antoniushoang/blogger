@@ -158,17 +158,17 @@ String.prototype.embedImg=function(width){
 String.prototype.embedFacebook=function(width, height){
   if(!width){width=DEF_IMG_WIDTH;}
   if(!height){height=DEF_IMG_HEIGHT;}
-  return('<iframe src="http://www.facebook.com/video/embed?video_id='+this+'" width="'+width+'" height="'+height+'" frameborder="0"></iframe>');
+  return('<iframe src="https://www.facebook.com/video/embed?video_id='+this+'" width="'+width+'" height="'+height+'" frameborder="0"></iframe>');
 }
 String.prototype.embedLiveleak=function(width, height){
   if(!width){width=DEF_IMG_WIDTH;}
   if(!height){height=DEF_IMG_HEIGHT;}
-  return('<iframe width="'+width+'" height="'+height+'" src="http://www.liveleak.com/ll_embed?f='+this+'" frameborder="0" allowfullscreen></iframe>');
+  return('<iframe width="'+width+'" height="'+height+'" src="https://www.liveleak.com/ll_embed?f='+this+'" frameborder="0" allowfullscreen></iframe>');
 }
 String.prototype.embedYoutube=function(width, height){
   if(!width){width=DEF_IMG_WIDTH;}
   if(!height){height=DEF_IMG_HEIGHT;}
-  return('<embed type="application/x-shockwave-flash" allowscriptaccess="never" src="http://www.youtube.com/v/'+this+'&hl=en_US&fs=1&" width="'+width+'" height="'+height+'"></embed>');
+  return('<embed type="application/x-shockwave-flash" allowscriptaccess="never" src="https://www.youtube.com/v/'+this+'&hl=en_US&fs=1&" width="'+width+'" height="'+height+'"></embed>');
 }
 String.prototype.json2date=function(){
   var jts = this.split('T');
@@ -709,7 +709,7 @@ function timedCount(showAlert, windowhost){
   windowhost = windowhost || window.location.hostname;
   if(timer_is_on == 1){
     $.getJSON(
-    "http://"+windowhost+"/feeds/comments/default?redirect=false&max-results=1&alt=json-in-script&callback=?",
+    "https://"+windowhost+"/feeds/comments/default?redirect=false&max-results=1&alt=json-in-script&callback=?",
     {tags: "jquery,javascript", tagmode: "any", format: "json"},
     function(data){
       var counter = data.feed["openSearch$totalResults"].$t;
@@ -762,9 +762,9 @@ function setNavFloatingButton(nfbDiv, top, mid, bot){
   if(!mid){
     document.getElementById(nfbDiv).innerHTML = "";
   }else{
-    var msgTop = '<a href="#'+top+'"><img src="http://asinerum-gae.appspot.com/static/im_up.gif" border="0"/></a>';
-    var msgMid = '<a href="#'+mid+'"><img src="http://asinerum-gae.appspot.com/static/im_mid.gif" border="0"/></a>';
-    var msgBot = '<a href="#'+bot+'"><img src="http://asinerum-gae.appspot.com/static/im_down.gif" border="0"/></a>';
+    var msgTop = '<a href="#'+top+'"><img src="https://asinerum-gae.appspot.com/static/im_up.gif" border="0"/></a>';
+    var msgMid = '<a href="#'+mid+'"><img src="https://asinerum-gae.appspot.com/static/im_mid.gif" border="0"/></a>';
+    var msgBot = '<a href="#'+bot+'"><img src="https://asinerum-gae.appspot.com/static/im_down.gif" border="0"/></a>';
     document.getElementById(nfbDiv).innerHTML = msgTop+msgMid+msgBot;
   }
 }
@@ -819,8 +819,8 @@ titleShow, titleHide, imgShow, imgHide, idShow, idHide){
   ocfHide = ocfHide || "clearRecentComments01();";
   titleShow = titleShow || "Show latest comments";
   titleHide = titleHide || "Hide latest comments";
-  imgShow = imgShow || "http://asinerum-gae.appspot.com/static/icon_go_show.gif";
-  imgHide = imgHide || "http://asinerum-gae.appspot.com/static/icon_back_hide.gif";
+  imgShow = imgShow || "https://asinerum-gae.appspot.com/static/icon_go_show.gif";
+  imgHide = imgHide || "https://asinerum-gae.appspot.com/static/icon_back_hide.gif";
   idShow = idShow || "iRecentCommentShow";
   idHide = idHide || "iRecentCommentHide";
   title = hide ? titleHide : titleShow;
@@ -874,7 +874,7 @@ function updateOneCommentHeader(bcId, idPrefix, authorUrl, hideCounter, authorNa
   var cmtid = bcId.split('-')[1]; // bcId:[_cmt-xxxxxx]
   if(!hideCounter){mrHead = '<A NAME="cmt.'+cmtnum+'"></A><I><FONT COLOR="#FF9966">('+cmtnum+')</FONT></I>' + mrHead;}
   comheadid.innerHTML = mrHead;
-  comgoid.innerHTML = '<A HREF="javascript:setCommentQuote(getCommentQuote(\''+authorName.replace(/'/g,"\\'")+'\', '+cmtnum+', \''+cmtid+'\'));"><IMG HEIGHT="12" SRC="http://asinerum-gae.appspot.com/static/button.gif" TITLE="Go comment"/></A>';
+  comgoid.innerHTML = '<A HREF="javascript:setCommentQuote(getCommentQuote(\''+authorName.replace(/'/g,"\\'")+'\', '+cmtnum+', \''+cmtid+'\'));"><IMG HEIGHT="12" SRC="https://asinerum-gae.appspot.com/static/button.gif" TITLE="Go comment"/></A>';
 }
 function updateOneCommentContent(bcId, idPrefix, authorUrl, timestamp){
   var comtextid = document.getElementById(idPrefix+bcId);

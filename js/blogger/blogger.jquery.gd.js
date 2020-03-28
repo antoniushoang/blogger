@@ -29,7 +29,7 @@
         var numStartIndex = document.getElementById("blogspotapi-index").value;
         $('#blogspotapi-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
-        "http://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
+        "https://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
         function(data){
           $('#blogspotapi-results').empty();
@@ -64,7 +64,7 @@
         var numStartIndex = document.getElementById("blogspotapi-page-index").value;
         $('#blogspotapi-page-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
-        "http://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
+        "https://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
         function(data){
           $('#blogspotapi-page-results').empty();
@@ -96,7 +96,7 @@
         var numShowedComments = 200;
         var numStartIndex = 1;
         $.getJSON(
-        "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numShowedComments+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
+        "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numShowedComments+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
         function(data){
           $('#cmnts-results').empty();
@@ -132,7 +132,7 @@
         var numStartIndex = document.getElementById("blogspotapi-author-index").value;
         $('#cmnts-author-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
-        "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numMaxResult+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
+        "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numMaxResult+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
         function(data){
           $('#cmnts-author-results').empty();
@@ -191,7 +191,7 @@
         var numStartIndex = document.getElementById("flickrapi-index").value;
         $('#flickrapi-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
-        "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numShowedComments+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
+        "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numShowedComments+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
         function(data){
           $('#flickrapi-results').empty();
@@ -315,7 +315,7 @@ bHideLoading){
   var aPosts = {};
   ////\\\\
   $.getJSON(
-  "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+csMaxResult+"&start-index=1&alt=json-in-script&callback=?",
+  "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+csMaxResult+"&start-index=1&alt=json-in-script&callback=?",
   {tags: "jquery,javascript", tagmode: "any", format: "json"},
   function(data){
     $.each(data.feed.entry, function(key,val){
@@ -344,7 +344,7 @@ bHideLoading){
     $.each(aPosts, function(postKey,postVal){
       chkPostCount++;
       $.getJSON(
-      "http://"+blogger_hostname+"/feeds/"+postKey+"/comments/default?redirect=false&max-results="+csMaxResult+"&start-index=1&alt=json-in-script&callback=?",
+      "https://"+blogger_hostname+"/feeds/"+postKey+"/comments/default?redirect=false&max-results="+csMaxResult+"&start-index=1&alt=json-in-script&callback=?",
       {tags: "jquery,javascript", tagmode: "any", format: "json"},
       function(data){
         var counter = 0;
@@ -448,7 +448,7 @@ function getAuthorCmtCount(blogger_hostname, csMaxResult, csMinShow, scale, heig
   for(var i=0; i<nLoad; i++){
     var cIndex = (numCmtPerPage*i)+1;
     $.getJSON(
-    "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numCmtPerPage+"&start-index="+cIndex+"&alt=json-in-script&callback=?",
+    "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numCmtPerPage+"&start-index="+cIndex+"&alt=json-in-script&callback=?",
     {tags: "jquery,javascript", tagmode: "any", format: "json"},
     function(data){
       $.each(data.feed.entry, function(key,val){
@@ -481,7 +481,7 @@ function getDailyCmtCount(blogger_hostname, csMaxResult, csDays, scale, height, 
   for(var i=0; i<nLoad; i++){
     var cIndex = (numCmtPerPage*i)+1;
     $.getJSON(
-    "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numCmtPerPage+"&start-index="+cIndex+"&alt=json-in-script&callback=?",
+    "https://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numCmtPerPage+"&start-index="+cIndex+"&alt=json-in-script&callback=?",
     {tags: "jquery,javascript", tagmode: "any", format: "json"},
     function(data){
       $.each(data.feed.entry, function(key,val){
@@ -512,7 +512,7 @@ function showArchiveOption(){
   var thisyear = thisday.getFullYear();
   var startyear = 2008;
   for(var i=thisyear; i>=startyear; i--){
-    document.write('<input type="image" src="http://asinerum-gae.appspot.com/static/icon_go.gif" onclick="getArchiveIndex('+i+');"/>\r\n'+i+'<br/>');
+    document.write('<input type="image" src="https://asinerum-gae.appspot.com/static/icon_go.gif" onclick="getArchiveIndex('+i+');"/>\r\n'+i+'<br/>');
     document.write('<div class="bwa-archive" id="divArchive'+i+'"></div><br/>');
   }
 }
@@ -523,9 +523,9 @@ function getArchiveIndex(year){
   var published_min = year+'-01-01T00:00:00%2B'+timezone;
   var published_max = year+'-12-31T23:59:59%2B'+timezone;
   var divArchive = '#divArchive'+year;
-  $(divArchive).html('<img src="http://asinerum-gae.appspot.com/static/icon_loading.gif">');
+  $(divArchive).html('<img src="https://asinerum-gae.appspot.com/static/icon_loading.gif">');
   $.getJSON(
-  'http://'+window_location_hostname+'/feeds/posts/summary?redirect=false&published-min='+published_min+'&published-max='+published_max+'&max-results=200&start-index=1&alt=json-in-script&callback=?',
+  'https://'+window_location_hostname+'/feeds/posts/summary?redirect=false&published-min='+published_min+'&published-max='+published_max+'&max-results=200&start-index=1&alt=json-in-script&callback=?',
   {tags: 'jquery,javascript', tagmode: 'any', format: 'json'},
   function(data){
     var archive = '<br/>';
@@ -539,7 +539,7 @@ function getArchiveIndex(year){
       var title = val.title.$t;
       var label = val.category[0].term;
       var author = val.author[0].name.$t;
-      archive += '{'+posts+'} <a target="_blank" href="'+hrefPost+'">'+title+'</a><br/><span style="color: #FF9900;">'+published+' '+label+'&nbsp;<a href="http://'+window_location_hostname+'/search/label/'+label+'">&raquo;</a></span><br/>';
+      archive += '{'+posts+'} <a target="_blank" href="'+hrefPost+'">'+title+'</a><br/><span style="color: #FF9900;">'+published+' '+label+'&nbsp;<a href="https://'+window_location_hostname+'/search/label/'+label+'">&raquo;</a></span><br/>';
       posts--;
     });
     $(divArchive).html(archive);
