@@ -877,7 +877,7 @@ function updateOneCommentHeader(bcId, idPrefix, authorUrl, hideCounter, authorNa
   comgoid.innerHTML = '<A HREF="javascript:setCommentQuote(getCommentQuote(\''+authorName.replace(/'/g,"\\'")+'\', '+cmtnum+', \''+cmtid+'\'));"><IMG HEIGHT="12" SRC="https://asinerum-gae.appspot.com/static/button.gif" TITLE="Go comment"/></A>';
 }
 function updateOneCommentContent(bcId, idPrefix, authorUrl, timestamp){
-  var comtextid = document.getElementById(idPrefix+bcId);
+  var comtextid = document.getElementById(idPrefix+bcId); if(!comtextid)return;
   var mrText = getStyledComment(authorUrl, '?', timestamp, comtextid.innerHTML);
   comtextid.innerHTML = mrText;
 }
