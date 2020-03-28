@@ -1,22 +1,18 @@
 ﻿//////////////////////////////////////////////////
 //
-////
-//
 // Vars loaded from {blogger.pubvar.gd.js}
-//
-////
 //
 //////////////////////////////////////////////////
 //
 // Cookie-functions:
 //
-function setCookie(c_name,value,exdays){
+function setcookie(c_name,value,exdays){
   var exdate = new Date();
   exdate.setDate(exdate.getDate() + exdays);
   var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
   document.cookie = c_name + "=" + c_value;
 }
-function getCookie(c_name){
+function getcookie(c_name){
   var i, x, y, ARRcookies = document.cookie.split(";");
   for(i=0; i<ARRcookies.length; i++){
     x = ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
@@ -91,10 +87,8 @@ String.prototype.youtube=function(vid_stid){
     var vidlen = -1;
     res = res.replaceText('[img]', '[img=');
     res = res.replaceText('[/img]', ']');
-    //\\
     res = res.replaceText('[im]', '[img=');
     res = res.replaceText('[/im]', ']');
-    //\\
   }else if(vid_stid=='facebook'){
     var stid = 'facebook=';
     var vidlen = -1;
@@ -113,7 +107,6 @@ String.prototype.youtube=function(vid_stid){
   }
   var bpat = '[';
   var epat = ']';
-  //// var matches = this.gmatch(bpat, epat, stid);
   var matches = res.gmatch(bpat, epat, stid);
   for(var i=0; i<matches.length; i++){
     var vid = matches[i].substring(matches[i].indexOf('=')+1).split(epat)[0].trim();
@@ -142,11 +135,11 @@ String.prototype.youtube=function(vid_stid){
       }else{
         res = res.replace(matches[i], vid.embedLiveleak());
       }
-    }else{ //YOUTUBE
+    }else{//YOUTUBE.COM
       if(vid.length!=vidlen){
         vid = vid.substring(vid.indexOf('v=')+2).split('&')[0].split('#')[0].split('<')[0].trim();
       }
-      if(vid.length!=vidlen){ //YOUTU.BE
+      if(vid.length!=vidlen){//YOUTU.BE
         vid = matches[i].substring(matches[i].lastIndexOf('/')+1).split(epat)[0].split('?')[0].split('<')[0].trim();
       }
       if(vid.length!=vidlen){
@@ -196,9 +189,7 @@ function showListedPostHref(lHref){
   return(title);
 }
 function correctTitle(title,langID){
-  //\\ [langID=1]: Viet;
-  //\\ [langID=2]: Eng;
-  if(!langID){langID=1;}
+  if(!langID){langID=1;}//[1:Viet;2:Eng]
   for(var i=0; i<exPageNames.length; i++){
     if(title==exPageNames[i][0] || title.match(RegExp('p/'+exPageNames[i][0],'i'))){
       return(exPageNames[i][langID]);
@@ -212,7 +203,6 @@ function convertCustomTags(text){
   text = text.youtube();
   text = text.youtube('facebook');
   text = text.youtube('liveleak');
-  //\\
   text = text.youtube('img');
   text = insertSmiley(text);
   text = convertCustomFontTags(text);
@@ -235,9 +225,9 @@ newPatBegin, newPatEnd, newTagEnd, useQuot){
     temp = temp.substr(pe+pelen);
     text = text.replace(ftag,newPatBegin+attr+newPatEnd);
     if(tagEnd){
-      //\\ te = temp.search(tagEnd);
-      //\\ if(te<0){break;}
-      //\\ temp = temp.substr(te+telen);
+      /// te = temp.search(tagEnd);
+      /// if(te<0){break;}
+      /// temp = temp.substr(te+telen);
       text = text.replace(tagEnd,newTagEnd);
     }
   }
@@ -264,8 +254,6 @@ function clearAllSpeakings(text){
   return(text);
 }
 function convertCustomFontTags(text){
-  text = convertAllSpeakings(text);
-  ////
   text = text.replaceText('[fim]', '<img src="');
   text = text.replaceText('[/fim]', '"/>');
   text = text.replaceText('[u]', '<u>');
@@ -287,7 +275,10 @@ function convertCustomFontTags(text){
   text = text.replaceText('[ar]', '<div align="right">');
   text = text.replaceText('[/ar]', '</div>');
   text = text.replaceText('[hr]', '<hr/>');
+  text = text.replaceText('[xut]', '<b class="xut-');
+  text = text.replaceText('[/xut]', '"></b>');
   ////
+  //// Format tags with inner-html
   text = updateCustomTag(text, /\[fo:/i, 4, /\]/i, 1, /\[\/fo\]/i, 5, '<font ', '>', '</font>', true);
   text = updateCustomTag(text, /\[ss:/i, 4, /\]/i, 1, /\[\/ss\]/i, 5, '<span style="', '">', '</span>');
   text = updateCustomTag(text, /\[fa=/i, 4, /\]/i, 1, /\[\/fa\]/i, 5, '<font face="', '">', '</font>');
@@ -295,17 +286,18 @@ function convertCustomFontTags(text){
   text = updateCustomTag(text, /\[co=/i, 4, /\]/i, 1, /\[\/co\]/i, 5, '<font color="', '">', '</font>');
   text = updateCustomTag(text, /\[bg=/i, 4, /\]/i, 1, /\[\/bg\]/i, 5, '<span style="background-color:', '">', '</span>');
   text = updateCustomTag(text, /\[al=/i, 4, /\]/i, 1, /\[\/al\]/i, 5, '<div align="', '">', '</div>');
+  text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '<b class="xut-', '">', '</b>');
   ////
+  //// Clean well-formed tag attributes
   text = text.tag2tag("img", "", "(src|width|height|border)");
   text = text.tag2tag("font", "", "(size|color|face)");
   text = text.tag2tag("span", "", "(style|class)");
   text = text.tag2tag("div", "", "(align|style|class)");
+  text = text.tag2tag("b", "", "(class|value|fixed)");
   ////
   return(text);
 }
 function clearCustomTags(text){
-  text = clearAllSpeakings(text);
-  ////
   text = text.clearText('[im]');
   text = text.clearText('[img]');
   text = text.clearText('[fim]');
@@ -331,6 +323,8 @@ function clearCustomTags(text){
   text = text.clearText('[ar]');
   text = text.clearText('[/ar]');
   text = text.clearText('[hr]');
+  text = text.clearText('[xut]');
+  text = text.clearText('[/xut]');
   ////
   text = text.clearText('[youtube]');
   text = text.clearText('[/youtube]');
@@ -352,6 +346,7 @@ function clearCustomTags(text){
   text = updateCustomTag(text, /\[co=/i, 4, /\]/i, 1, /\[\/co\]/i, 5, '<co=', '/>', '');
   text = updateCustomTag(text, /\[bg=/i, 4, /\]/i, 1, /\[\/bg\]/i, 5, '<bg=', '/>', '');
   text = updateCustomTag(text, /\[al=/i, 4, /\]/i, 1, /\[\/al\]/i, 5, '<al=', '/>', '');
+  text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '', '');
   ////
   return(text);
 }
@@ -412,7 +407,7 @@ String.prototype.tag2tag=function(tagName, aName1, allowedAttr){
     if(tagName=="font" && autoResizeCommentFont){
       var fsize = tags[i].getAttribute("size");
       if(Number(fsize)>nFontSizeMax){tags[i].setAttribute("size",nFontSizeMin);}
-      //\\ if(Number(fsize)<nFontSizeMin){tags[i].setAttribute("size",nFontSizeMax-1);}
+      if(Number(fsize)<nFontSizeMin){tags[i].setAttribute("size",nFontSizeMax-1);}
     }
     for(var j=0; j<tags[i].attributes.length; j++){
       var aaName = tags[i].attributes[j].name.toLowerCase();
@@ -543,7 +538,6 @@ function openAuthorStyle(url, name, ctime, returnvalue){
   if(returnvalue){return(strTextStyle);}
 }
 function closeAuthorStyle(cbodyId, returnvalue){
-  //\\ <cbodyId> maybe DivID or a TextContent
   var strSetStyle = '';
   var strTextStyle = '';
   if(isBLAuthor){
@@ -582,7 +576,6 @@ function isVIP(uid){
   return(-1);
 }
 function isBL(url, name, ctime){
-  //\\ [ctime]:DateString
   for(var i=0; i<UserBLs.length; i++){
     if(url.match(RegExp(UserBLs[i][0], 'gi')) || name.match(RegExp(UserBLs[i][1], 'gi'))){
       rsBLAuthor = UserBLs[i][4] ? UserBLs[i][4] : false;
@@ -630,14 +623,14 @@ function showVIP(uri, tag, width, nbsp, ava, ancRec, ancData){
         }
       }
       if(tag){
-        //\\ icon += nbsp + "<div class='fb-like' data-href='"+uri+"' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false'></div>";
-        //\\ icon += nbsp + '<g:plusone size="medium" href="'+uri+'"></g:plusone>';
+        /// icon += nbsp + "<div class='fb-like' data-href='"+uri+"' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false'></div>";
+        /// icon += nbsp + '<g:plusone size="medium" href="'+uri+'"></g:plusone>';
       }
     }
   }
   if(ancRec||ancData){
-    //\\ icon += nbsp + "<div class='fb-like' data-href='"+cmtUrl+"' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false'></div>";
-    //\\ icon += nbsp + '<g:plusone size="small" href="'+cmtUrl+'"></g:plusone>';
+    /// icon += nbsp + "<div class='fb-like' data-href='"+cmtUrl+"' data-send='false' data-layout='button_count' data-width='450' data-show-faces='false'></div>";
+    /// icon += nbsp + '<g:plusone size="small" href="'+cmtUrl+'"></g:plusone>';
   }
   return(icon);
 }
@@ -723,9 +716,8 @@ function timedCount(showAlert, windowhost){
       var newComments = counter - totalComments;
       if(newComments>0){
         totalComments = counter;
-        setCookie(cookieCount, totalComments, cookieDays);
-        //\\ Note this local function:
-        getRecentComments01();
+        setcookie(cookieCount, totalComments, cookieDays);
+        getRecentComments01();//LocalFunc
         if(showAlert){
           alert(newComments + " new comment(s) comming");
         }
@@ -738,12 +730,12 @@ function doTimer(showAlert, windowhost){
   if(timer_is_on != 1){
     timer_is_on = 1;
     setAutoAlertMsg(msgCAAOn);
-    setCookie(cookieName, 1, cookieDays);
+    setcookie(cookieName, 1, cookieDays);
     timedCount(showAlert, windowhost);
   }else{
     timer_is_on = 0;
     setAutoAlertMsg(msgCAAOff);
-    setCookie(cookieName, 0, cookieDays);
+    setcookie(cookieName, 0, cookieDays);
   }
 }
 function setAutoAlertMsg(msg){
@@ -752,10 +744,10 @@ function setAutoAlertMsg(msg){
 function doFloat(){
   if(nav_is_on != 1){
     nav_is_on = 1;
-    setCookie(cookieNav, 1, cookieDays);
+    setcookie(cookieNav, 1, cookieDays);
   }else{
     nav_is_on = 0;
-    setCookie(cookieNav, 0, cookieDays);
+    setcookie(cookieNav, 0, cookieDays);
   }
   setNavFloating(nav_is_on);
 }

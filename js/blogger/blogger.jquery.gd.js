@@ -27,7 +27,7 @@
         //numCommentPerPage=200
         var numShowedPosts = document.getElementById("blogspotapi-number").value;
         var numStartIndex = document.getElementById("blogspotapi-index").value;
-        $('#blogspotapi-results').html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+        $('#blogspotapi-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
         "http://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
@@ -62,7 +62,7 @@
         //numCommentPerPage=200
         var numShowedPosts = document.getElementById("blogspotapi-page-number").value;
         var numStartIndex = document.getElementById("blogspotapi-page-index").value;
-        $('#blogspotapi-page-results').html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+        $('#blogspotapi-page-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
         "http://"+blogger_hostname+"/feeds/posts/summary?redirect=false&max-results="+numShowedPosts+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
@@ -92,7 +92,7 @@
       },
       blogspotapi_cmnts_results: function(blogger_hostname){
         if(!blogger_hostname){blogger_hostname=window.location.hostname;}
-        $('#cmnts-results').html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+        $('#cmnts-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         var numShowedComments = 200;
         var numStartIndex = 1;
         $.getJSON(
@@ -130,7 +130,7 @@
         var strAuthID = document.getElementById("blogspotapi-author-uri").value;
         var numMaxResult = document.getElementById("blogspotapi-author-number").value;
         var numStartIndex = document.getElementById("blogspotapi-author-index").value;
-        $('#cmnts-author-results').html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+        $('#cmnts-author-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
         "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numMaxResult+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
@@ -189,7 +189,7 @@
         if(!blogger_hostname){blogger_hostname=window.location.hostname;}
         var numShowedComments = document.getElementById("flickrapi-number").value;
         var numStartIndex = document.getElementById("flickrapi-index").value;
-        $('#flickrapi-results').html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+        $('#flickrapi-results').html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
         $.getJSON(
         "http://"+blogger_hostname+"/feeds/comments/default?redirect=false&max-results="+numShowedComments+"&start-index="+numStartIndex+"&alt=json-in-script&callback=?",
         {tags: "jquery,javascript", tagmode: "any", format: "json"},
@@ -304,8 +304,8 @@ bHideLoading){
   bHideLoading = bHideLoading || false;
   blogger_hostname = blogger_hostname || window.location.hostname;
   if(!bHideLoading){
-    var iLoading = '<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" />';
-    //\\ $('#'+rDivID).html('<img src="https://lh6.googleusercontent.com/-LgxnMB7Rh5M/T3h7d6rK3VI/AAAAAAAAAKA/nf_U7sWzHVA/w43/loading.gif" style="float:left;" />');
+    var iLoading = '<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" />';
+    //\\ $('#'+rDivID).html('<img src="https://raw.githubusercontent.com/asinerum/project/master/loading.gif" style="float:left;" />');
     document.getElementById(rDivID).innerHTML = iLoading;
   }
   ////\\\\
@@ -461,7 +461,7 @@ function getAuthorCmtCount(blogger_hostname, csMaxResult, csMinShow, scale, heig
         var result = '';
         $.each(cStats, function(key,val){
           if(val>csMinShow){
-	    result += '<img src="https://lh4.googleusercontent.com/-mRXnbr50wbs/UN2N8XwO8CI/AAAAAAAACpM/YCIKlHlyKh8/s12/dot.gif" height="'+height+'" width="'+(val*scale)+'"/>&nbsp;<font color="brown">'+key+'</font>&nbsp;('+val+')<br/>';
+	    result += '<img src="https://raw.githubusercontent.com/asinerum/project/master/gui/dot.gif" height="'+height+'" width="'+(val*scale)+'"/>&nbsp;<font color="brown">'+key+'</font>&nbsp;('+val+')<br/>';
           }
         });
         document.getElementById(divID).innerHTML = result;
@@ -496,7 +496,7 @@ function getDailyCmtCount(blogger_hostname, csMaxResult, csDays, scale, height, 
         $.each(aCmtCounts, function(key,val){
           dayCount++;
           if(val>0 && dayCount<count){//IgoreLastResult
-            result += '<img src="https://lh4.googleusercontent.com/-mRXnbr50wbs/UN2N8XwO8CI/AAAAAAAACpM/YCIKlHlyKh8/s12/dot.gif" height="'+height+'" width="'+(val*scale)+'"/>&nbsp;<font color="brown">'+key+'</font>&nbsp;('+val+')<br/>';
+            result += '<img src="https://raw.githubusercontent.com/asinerum/project/master/gui/dot.gif" height="'+height+'" width="'+(val*scale)+'"/>&nbsp;<font color="brown">'+key+'</font>&nbsp;('+val+')<br/>';
           }
         });
         document.getElementById(divID).innerHTML = result;
