@@ -277,6 +277,8 @@ function convertCustomFontTags(text){
   text = text.replaceText('[hr]', '<hr/>');
   text = text.replaceText('[xut]', '<b class="xut-');
   text = text.replaceText('[/xut]', '"></b>');
+  text = text.replaceText('[xga]', '<b class="xga-');
+  text = text.replaceText('[/xga]', '"></b>');
   ////
   //// Format tags with inner-html
   text = updateCustomTag(text, /\[fo:/i, 4, /\]/i, 1, /\[\/fo\]/i, 5, '<font ', '>', '</font>', true);
@@ -287,6 +289,7 @@ function convertCustomFontTags(text){
   text = updateCustomTag(text, /\[bg=/i, 4, /\]/i, 1, /\[\/bg\]/i, 5, '<span style="background-color:', '">', '</span>');
   text = updateCustomTag(text, /\[al=/i, 4, /\]/i, 1, /\[\/al\]/i, 5, '<div align="', '">', '</div>');
   text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '<b class="xut-', '"></b>', '', false);
+  text = updateCustomTag(text, /\[xga=/i, 5, /\]/i, 1, '', 0, '<b class="xga-', '"></b>', '', false);
   ////
   //// Clean well-formed tag attributes
   text = text.tag2tag("img", "", "(src|width|height|border)");
@@ -325,6 +328,8 @@ function clearCustomTags(text){
   text = text.clearText('[hr]');
   text = text.clearText('[xut]');
   text = text.clearText('[/xut]');
+  text = text.clearText('[xga]');
+  text = text.clearText('[/xga]');
   ////
   text = text.clearText('[youtube]');
   text = text.clearText('[/youtube]');
@@ -347,6 +352,7 @@ function clearCustomTags(text){
   text = updateCustomTag(text, /\[bg=/i, 4, /\]/i, 1, /\[\/bg\]/i, 5, '<bg=', '/>', '');
   text = updateCustomTag(text, /\[al=/i, 4, /\]/i, 1, /\[\/al\]/i, 5, '<al=', '/>', '');
   text = updateCustomTag(text, /\[xut=/i, 5, /\]/i, 1, '', 0, '', '');
+  text = updateCustomTag(text, /\[xga=/i, 5, /\]/i, 1, '', 0, '', '');
   ////
   return(text);
 }
